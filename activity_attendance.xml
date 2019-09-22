@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_attendance"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    tools:context="com.example.assistme.AttendanceActivity"
+    android:background="@color/colorPrimary">
+
+    <TextView
+        android:text="Attendance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:textSize="24sp"
+        android:padding="8dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:background="#CDDC39"
+        android:gravity = "center"
+        android:textColor="@android:color/black" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentStart="true"
+        android:id="@+id/addSubject"
+        android:hint="Type here to add a new subject.."
+        android:layout_alignParentEnd="true"
+        android:onClick="addSubject"
+        android:textColor="?attr/colorAccent" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/addSubject"
+        android:textColor="@android:color/holo_blue_bright"
+        android:id="@+id/subjectListView" />
+
+</RelativeLayout>

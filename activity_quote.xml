@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_quote"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:paddingLeft="16dp"
+    android:paddingTop="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp"
+    tools:context="com.example.assistme.QuoteActivity">
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="1dp"
+        android:background="#CDDC39"
+        android:gravity="center"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:text="Random Quote"
+        android:textColor="@android:color/background_dark"
+        android:textSize="24sp" />
+
+    <ListView
+        android:id="@+id/quoteListViewId"
+        android:layout_width="wrap_content"
+        android:layout_height="517dp"
+        android:layout_below="@+id/textView4"
+        android:layout_marginTop="52dp" />
+
+    <TextView
+        android:id="@+id/tapTextViewId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="27dp"
+        android:gravity="center"
+        android:text="Tap the screen once to generate a random quote!"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp" />
+
+</RelativeLayout>
