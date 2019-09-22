@@ -1,2 +1,4 @@
 # App-5-AssistMe
 AssistMe is an Android application which helps maintain records. It's a combination of a personal diary and a speech-text translator.
+
+Used Android Studio for writing the code in Java for app development. The app can be used to maintain the attendance for various subjects or events; add, edit and delete new notes; and generate random quotes. This app also lets the users translate the required speech into text as well as text into speech. An option has also been provided to save these text notes separately along with the other notes, and edit, delete and add new notes as per the requirement. Radio buttons and menu options have also been given in the app to select from one of the displayed languages - English, French, German and Italian for speech translation.
