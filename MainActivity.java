@@ -40,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
         //mainList.add("Score");
         //mainList.add("Expenditure");
         mainList.add("Random Quote");
+        mainList.add("Brain Trainer");
+        mainList.add("Disco Lights");
       //  mainList.add("Other Notes");
 
 
@@ -81,9 +83,12 @@ public class MainActivity extends AppCompatActivity {
                     case 3:
                         intent = new Intent(getApplicationContext(), DatesGoalsNotesActivity.class );
                         break;
-//                    case 5:
-//                        intent = new Intent(getApplicationContext(), SavedNotes.class);
-//                        break;
+                    case 5:
+                        intent = new Intent(getApplicationContext(), BrainTrainerActivity.class);
+                        break;
+                    case 6:
+                        intent = new Intent(getApplicationContext(), DiscoLightsActivity.class);
+                        break;
                 }
                 startActivity(intent);
 
