@@ -7,12 +7,11 @@
     tools:context=".DiscoLightsActivity">
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/displayTextView"
+        android:layout_width="412dp"
+        android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="107dp"
-        android:layout_marginEnd="174dp"
-        android:text="Disco Lights Activity" />
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp" />
 </RelativeLayout>
