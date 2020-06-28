@@ -1,11 +1,5 @@
 package com.example.assistme;
 
-/**
- * Created by Karishma on 28-Mar-19.
- */
-
-import android.util.Log;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -13,9 +7,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-
 public class ObjectSerializer {
-
 
     public static String serialize(Serializable obj) throws IOException {
         if (obj == null) return "";
@@ -62,5 +54,4 @@ public class ObjectSerializer {
         }
         return bytes;
     }
-
 }
