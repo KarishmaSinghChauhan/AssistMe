@@ -65,40 +65,14 @@ public class DatesGoalsNotes2Activity extends AppCompatActivity {
 
             public void afterTextChanged(Editable s) {
 
-                //if(!s.equals("") ) {
-                //do your work here
-
-                //pos = intent.getIntExtra("listPosition",-1);
-
-                //if (pos != -1) {
                 DatesGoalsNotesActivity.notesList.set(pos, notesEditText.getText().toString());
                 DatesGoalsNotesActivity.notesListView.setAdapter(DatesGoalsNotesActivity.arrayAdapter);
-
                 try {
                     DatesGoalsNotesActivity.sharedPreferences.edit().putString("NotesList", ObjectSerializer.serialize(DatesGoalsNotesActivity.notesList)).apply();
-                } catch (Exception e) {
+                }
+                catch (Exception e) {
                     e.printStackTrace();
                 }
-                //}
-
-                    /*else {
-
-                        DatesGoalsNotesActivity.notesList.add("");
-                        pos = DatesGoalsNotesActivity.notesList.size()-1;
-
-                        DatesGoalsNotesActivity.notesList.set(pos, notesEditText.getText().toString());
-                        DatesGoalsNotesActivity.notesListView.setAdapter(DatesGoalsNotesActivity.arrayAdapter);
-
-                        try {
-                            sharedPreferences.edit().putString("savedNotesList", ObjectSerializer.serialize(DatesGoalsNotesActivity.notesList)).apply();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-
-                    }*/
-
-                //}
-
             }
         });
     }

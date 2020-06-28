@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.Random;
 
-
 public class BrainTrainerActivity extends AppCompatActivity {
 
     Button startButton;
@@ -26,7 +25,6 @@ public class BrainTrainerActivity extends AppCompatActivity {
     TextView timerTextView;
     Button playAgainButton;
     RelativeLayout gameRelativeLayout;
-
 
     ArrayList<Integer> answers = new ArrayList<Integer>();
     int locationOfCorrectAnswer;
@@ -51,7 +49,6 @@ public class BrainTrainerActivity extends AppCompatActivity {
             public void onTick(long millisUntilFinished) {
 
                 timerTextView.setText(String.valueOf(millisUntilFinished / 1000) + "s");
-
             }
 
             @Override
@@ -60,35 +57,26 @@ public class BrainTrainerActivity extends AppCompatActivity {
                 playAgainButton.setVisibility(View.VISIBLE);
                 timerTextView.setText("0s");
                 resultTextView.setText("Your score: " + Integer.toString(score) + "/" + Integer.toString(numberOfQuestions));
-
             }
         }.start();
-
-
     }
 
     public void generateQuestion() {
 
         Random rand = new Random();
-
         int a = rand.nextInt(51);
         int b = rand.nextInt(51);
-
         int symbol = rand.nextInt(5);
-
         String s = " ";
         int ans = 0;
 
-        if(b == 0)
-        {
-            while(symbol == 4 || symbol == 0)
-            {
+        if(b == 0) {
+            while(symbol == 4 || symbol == 0) {
                 symbol = rand.nextInt(5);
             }
         }
 
-        switch(symbol)
-        {
+        switch(symbol) {
             case 1 : s = " + ";
                 ans = a+b;
                 break;
@@ -107,73 +95,51 @@ public class BrainTrainerActivity extends AppCompatActivity {
         }
 
         sumTextView.setText(Integer.toString(a) + s + Integer.toString(b));
-
         locationOfCorrectAnswer = rand.nextInt(4);
-
         answers.clear();
-
         int incorrectAnswer;
 
         for (int i=0; i<4; i++) {
 
             if (i == locationOfCorrectAnswer) {
-
                 answers.add(ans);
-
             } else {
-
                 incorrectAnswer = rand.nextInt(500);
 
                 while (incorrectAnswer == ans) {
-
                     incorrectAnswer = rand.nextInt(500);
-
                 }
-
                 answers.add(incorrectAnswer);
-
             }
-
         }
 
         button0.setText(Integer.toString(answers.get(0)));
         button1.setText(Integer.toString(answers.get(1)));
         button2.setText(Integer.toString(answers.get(2)));
         button3.setText(Integer.toString(answers.get(3)));
-
-
-
     }
 
     public void chooseAnswer(View view) {
 
         if (view.getTag().toString().equals(Integer.toString(locationOfCorrectAnswer))) {
-
             score++;
             resultTextView.setText("Correct!");
-
-        } else {
-
+        }
+        else {
             resultTextView.setText("Wrong!");
-
         }
 
         numberOfQuestions++;
         pointsTextView.setText(Integer.toString(score) + "/" + Integer.toString(numberOfQuestions));
         generateQuestion();
-
-
     }
 
     public void start(View view) {
 
         startButton.setVisibility(View.INVISIBLE);
         gameRelativeLayout.setVisibility(RelativeLayout.VISIBLE);
-
         playAgain(findViewById(R.id.playAgainButton));
-
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -191,7 +157,5 @@ public class BrainTrainerActivity extends AppCompatActivity {
         timerTextView = (TextView)findViewById(R.id.timerTextView);
         playAgainButton = (Button)findViewById(R.id.playAgainButton);
         gameRelativeLayout = (RelativeLayout)findViewById(R.id.gameRelativeLayout);
-
-
     }
 }

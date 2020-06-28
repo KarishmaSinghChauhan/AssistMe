@@ -1,6 +1,5 @@
 package com.example.assistme;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -37,40 +36,27 @@ public class AttendanceActivity2 extends AppCompatActivity {
     EditText minAttEditText;
     double f;
 
-
     public void rename(View view){
 
         intent = getIntent();
         String subName = (intent.getStringExtra("subjectName"));
         int pos = (int)intent.getIntExtra("position", -1);
-
         subject = (EditText) findViewById(R.id.subject);
         Editable newSub = subject.getText();
         String s = " ";
-        if(newSub != null)
-        {
+        if(newSub != null) {
             s = newSub.toString();
         }
         try {
-
             SQLiteDatabase vattendanceDB = this.openOrCreateDatabase("Vattendance", MODE_PRIVATE, null);
-
             vattendanceDB.execSQL("CREATE TABLE IF NOT EXISTS vattendance (positions INT, subject VARCHAR, present DOUBLE, absent DOUBLE, minAtt DOUBLE, id INTEGER PRIMARY KEY)");
-
             vattendanceDB.execSQL("UPDATE vattendance SET subject = '"+s+"' WHERE positions = "+pos+"");
-
             subjectList.set(pos,s);
-
             sharedPreferences = this.getSharedPreferences("com.example.karishma.mypersonaldiary", Context.MODE_PRIVATE);
-
             sharedPreferences.edit().putString("SUBJECTLIST", ObjectSerializer.serialize(subjectList)).apply();
-
             subjectList = (ArrayList) ObjectSerializer.deserialize(sharedPreferences.getString("SUBJECTLIST", ObjectSerializer.serialize(new ArrayList<String>())));
-
-
         }
-        catch (Exception ee)
-        {
+        catch (Exception ee) {
             ee.printStackTrace();
             Toast.makeText(getApplicationContext(), "Error in renaming the subject!", Toast.LENGTH_SHORT).show();
         }
@@ -83,31 +69,13 @@ public class AttendanceActivity2 extends AppCompatActivity {
             com.example.assistme.AttendanceActivity.subjectListView.setAdapter(com.example.assistme.AttendanceActivity.arrayAdapter);
         }
 
-
-
         InputMethodManager inputManager =
                 (InputMethodManager) getApplicationContext().
                         getSystemService(Context.INPUT_METHOD_SERVICE);
         inputManager.hideSoftInputFromWindow(
                 this.getCurrentFocus().getWindowToken(),
                 InputMethodManager.HIDE_NOT_ALWAYS);
-
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public void updateAttendance(View view) {
 
@@ -118,62 +86,43 @@ public class AttendanceActivity2 extends AppCompatActivity {
         presentEditText = (EditText) findViewById(R.id.presentEditText);
         absentEditText = (EditText) findViewById(R.id.absentEditText);
 
-
         presentTextView.setText(presentEditText.getText());
         absentTextView.setText(absentEditText.getText());
 
         Editable a = null, b = null;
         double C = 0, d = 0;
         try {
-            //   if( !(presentEditText.getText()).equals("")) {
             a = presentEditText.getText();
-            // }
-            // if( !(absentEditText.getText()).equals("")) {
             b = absentEditText.getText();
-            //  }
             C = 0.0;
             d = 0.0;
 
-            //Toast.makeText(getApplicationContext(), a.toString()+", "+b.toString(), Toast.LENGTH_SHORT).show();
-
             if (a != null) {
                 C = Double.parseDouble(a.toString());
-//                Toast.makeText(getApplicationContext(), a.toString() + ", " + b.toString() + ", " + Double.toString(c), Toast.LENGTH_SHORT).show();
             }
-
             if (b != null) {
                 d = Double.parseDouble(b.toString());
             }
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             e.printStackTrace();
-            //Toast.makeText(getApplicationContext(), "Please enter in both the Present and Absent textfields to proceed.", Toast.LENGTH_SHORT).show();
         }
 
-
-        //if(c != 0 && d != 0) {
         int e = (int) (C+ d);
-        //   Toast.makeText(getApplicationContext(),String.valueOf(e) , Toast.LENGTH_SHORT).show();
 
         totalTextView.setText(String.valueOf(e));
-        //}
-
         f = C * 100 / e;
         f = Math.round(f * 100);
         f = f / 100;
-        // Toast.makeText(getApplicationContext(),String.valueOf(f) , Toast.LENGTH_SHORT).show();
         percentTextView.setText((String.valueOf(f)) + " %");
 
         double minA = 0;
         try {
-            // CharSequence k = "";
             minA = Double.parseDouble((minAttEditText.getText()).toString());
             if (minA <= 100) {
                 minAttTextView.setText(minAttEditText.getText() + " %");
-                //Editable min = minAttEditText.getText();
-                //double minA = Double.parseDouble(min.toString());
                 minA = Math.round(minA * 100);
                 minA = minA / 100;
-
 
                 if (f < minA) {
                     summaryTextView.setText("You've got a low attendance! You need to attend more classes. :(");
@@ -182,7 +131,8 @@ public class AttendanceActivity2 extends AppCompatActivity {
                     summaryTextView.setText("Good job! It seems you have regularly attended your classes. :)");
                 }
 
-            } else {
+            }
+            else {
                 Toast.makeText(getApplicationContext(), "Minimum percentage must not be greater than 100%", Toast.LENGTH_SHORT).show();
             }
         } catch (Exception l) {
@@ -196,14 +146,6 @@ public class AttendanceActivity2 extends AppCompatActivity {
                 this.getCurrentFocus().getWindowToken(),
                 InputMethodManager.HIDE_NOT_ALWAYS);
 
-        //minAttEditText.getText().clear();
-        // presentEditText.getText().clear();
-        //absentEditText.getText().clear();
-
-
-        //double percent = (double)(Double.parseDouble(presentEditText.getText().toString())/(Double.parseDouble(totalTextView.getText().toString())));
-        //percentTextView.setText(Double.toString(percent));
-
         intent = getIntent();
         String subName = (intent.getStringExtra("subjectName"));
         int pos = (int)intent.getIntExtra("position", -1);
@@ -213,52 +155,31 @@ public class AttendanceActivity2 extends AppCompatActivity {
         double minatt = Double.parseDouble(minAttEditText.getText().toString());
 
         try {
-
             SQLiteDatabase vattendanceDB = this.openOrCreateDatabase("Vattendance", MODE_PRIVATE, null);
-
             vattendanceDB.execSQL("CREATE TABLE IF NOT EXISTS vattendance (positions INT, subject VARCHAR, present DOUBLE, absent DOUBLE, minAtt DOUBLE, id INTEGER PRIMARY KEY)");
-
-            //  attendanceDB.execSQL("INSERT INTO attendance (positions, subject, present, absent, minAtt) VALUES (pos, subName , c, d, minA)");
-
-            //UPDATE AND DISPLAY THE DATABASE OF PRESENT, ABSENT, MINATT USING USER'S INPUT NOW!!!
 
             vattendanceDB.execSQL("UPDATE vattendance SET present = "+pres+" WHERE positions = "+pos+"");
             vattendanceDB.execSQL("UPDATE vattendance SET absent = "+abs+" WHERE positions = "+pos+"");
             vattendanceDB.execSQL("UPDATE vattendance SET minAtt = "+minatt+" WHERE positions = "+pos+"");
-
-
-
-
         }
-        catch (Exception ee)
-        {
+        catch (Exception ee) {
             ee.printStackTrace();
             Toast.makeText(getApplicationContext(), "Error in storing database!", Toast.LENGTH_SHORT).show();
         }
-
     }
-
-
-
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance2);
 
-
         subject = (EditText)findViewById(R.id.subject);
-
         presentTextView = (TextView) findViewById(R.id.presentTextView);
         absentTextView = (TextView) findViewById(R.id.absentTextView);
         totalTextView = (TextView) findViewById(R.id.totalTextView);
         percentTextView = (TextView) findViewById(R.id.percentTextView);
         presentEditText = (EditText) findViewById(R.id.presentEditText);
         absentEditText = (EditText) findViewById(R.id.absentEditText);
-
         minAttTextView = (TextView)findViewById(R.id.minAttTextView);
         summaryTextView = (TextView)findViewById(R.id.summaryTextView);
         minAttEditText = (EditText)findViewById(R.id.minAttEditText);
@@ -272,21 +193,8 @@ public class AttendanceActivity2 extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), subName, Toast.LENGTH_SHORT).show();
 
         try {
-
             SQLiteDatabase vattendanceDB = getApplicationContext().openOrCreateDatabase("Vattendance", MODE_PRIVATE, null);
-            //  SQLiteDatabase attendanceDB = this.openOrCreateDatabase("Attendance", MODE_PRIVATE, null);
-
             vattendanceDB.execSQL("CREATE TABLE IF NOT EXISTS vattendance (positions INT, subject VARCHAR, present DOUBLE, absent DOUBLE, minAtt DOUBLE, id INTEGER PRIMARY KEY)");
-
-
-            //vattendanceDB.execSQL("DELETE FROM vattendance WHERE subject = '"+subName+"' LIMIT 1");
-            //vattendanceDB.execSQL("DELETE FROM vattendance WHERE absent = 0");
-            //vattendanceDB.execSQL("DELETE FROM vattendance WHERE present = 12");
-            //vattendanceDB.execSQL("DELETE FROM vattendance WHERE subject = 'ED'");
-
-            //UPDATE DATABASE FOR VALUES OF PRESENT, ABSENT, MINATT
-
-
             Cursor c = vattendanceDB.rawQuery("SELECT * FROM vattendance", null);
 
             int positionsIndex = c.getColumnIndex("positions");
@@ -297,76 +205,54 @@ public class AttendanceActivity2 extends AppCompatActivity {
             int idIndex = c.getColumnIndex("id");
 
             c.moveToFirst();
-
             int count = c.getCount();
 
             for (int i = 0; i <= count -1; i++) {
 
-                if(i== pos)
-                {
-                    //DISPLAY THE DATABASE FIELDS IN THEIR RESPECTIVE TEXTFEILDS
+                if(i== pos) {
                     Log.i("positions = ", Integer.toString(c.getInt(positionsIndex)));
                     Log.i("subject = ", c.getString(subjectIndex));
                     Log.i("id = ", Integer.toString(c.getInt(idIndex)));
                     Log.i("present = ", Double.toString(c.getDouble(presentIndex)));
                     Log.i("absent = ", Double.toString(c.getDouble(absentIndex)));
 
-
                     presentTextView.setText((CharSequence)(Double.toString(c.getDouble(presentIndex))));
                     absentTextView.setText((CharSequence)(Double.toString(c.getDouble(absentIndex))));
-                    //  minAttTextView.setText(Double.toString(c.getDouble(minAttIndex)) + " %");
                     presentEditText.setText((CharSequence)(Double.toString(c.getDouble(presentIndex))));
                     absentEditText.setText((CharSequence)(Double.toString(c.getDouble(absentIndex))));
 
                     Editable a = null, b = null;
                     double C = 0, d = 0;
                     try {
-                        //   if( !(presentEditText.getText()).equals("")) {
                         a = presentEditText.getText();
-                        // }
-                        // if( !(absentEditText.getText()).equals("")) {
                         b = absentEditText.getText();
-                        //  }
                         C = 0.0;
                         d = 0.0;
 
-                        //Toast.makeText(getApplicationContext(), a.toString()+", "+b.toString(), Toast.LENGTH_SHORT).show();
-
                         if (a != null) {
                             C = Double.parseDouble(a.toString());
-//                Toast.makeText(getApplicationContext(), a.toString() + ", " + b.toString() + ", " + Double.toString(c), Toast.LENGTH_SHORT).show();
                         }
-
                         if (b != null) {
                             d = Double.parseDouble(b.toString());
                         }
-                    } catch (Exception e) {
+                    }
+                    catch (Exception e) {
                         e.printStackTrace();
-                        //Toast.makeText(getApplicationContext(), "Please enter in both the Present and Absent textfields to proceed.", Toast.LENGTH_SHORT).show();
                     }
 
-                    //if(c != 0 && d != 0) {
                     int e = (int) (C + d);
-                    //   Toast.makeText(getApplicationContext(),String.valueOf(e) , Toast.LENGTH_SHORT).show();
-
                     totalTextView.setText(String.valueOf(e));
-                    //}
-
                     f = C * 100 / e;
                     f = Math.round(f * 100);
                     f = f / 100;
-                    // Toast.makeText(getApplicationContext(),String.valueOf(f) , Toast.LENGTH_SHORT).show();
                     percentTextView.setText((String.valueOf(f)) + " %");
 
                     double minA = 0;
                     try {
-                        // CharSequence k = "";
                         minA = Double.parseDouble(Double.toString(c.getDouble(minAttIndex)));
                         if (minA <= 100) {
                             minAttTextView.setText(Double.toString(c.getDouble(minAttIndex)) + " %");
                             minAttEditText.setText(Double.toString(c.getDouble(minAttIndex)) );
-                            //Editable min = minAttEditText.getText();
-                            //double minA = Double.parseDouble(min.toString());
                             minA = Math.round(minA * 100);
                             minA = minA / 100;
 
@@ -376,11 +262,12 @@ public class AttendanceActivity2 extends AppCompatActivity {
                             if (f >= minA) {
                                 summaryTextView.setText("Good job! It seems you have regularly attended your classes. :)");
                             }
-
-                        } else {
+                        }
+                        else {
                             Toast.makeText(getApplicationContext(), "Minimum percentage must not be greater than 100%", Toast.LENGTH_SHORT).show();
                         }
-                    } catch (Exception l) {
+                    }
+                    catch (Exception l) {
                         Toast.makeText(getApplicationContext(), "Please enter the minimum attendance to proceed!", Toast.LENGTH_SHORT).show();
                     }
 
@@ -388,13 +275,10 @@ public class AttendanceActivity2 extends AppCompatActivity {
                 }
 
                 c.moveToNext();
-
             }
         }
-
         catch(Exception e ){
             e.printStackTrace() ;
-            //  Toast.makeText(getApplicationContext(), e, Toast.LENGTH_SHORT).show();
             Toast.makeText(getApplicationContext(), "Error in onCreate() database of AttendanceActivity2!", Toast.LENGTH_SHORT).show();
         }
     }

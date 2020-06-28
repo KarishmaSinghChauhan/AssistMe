@@ -35,7 +35,6 @@ public class QuoteActivity extends AppCompatActivity {
     {
         TextView quoteTextView = (TextView)findViewById(R.id.quoteTextViewId);
         TextView authorTextView = (TextView)findViewById(R.id.authorTextViewId);
-
         quoteTextView.setText(a);
         authorTextView.setText(b);
     }
@@ -52,13 +51,9 @@ public class QuoteActivity extends AppCompatActivity {
 
         /*
         WebView webView = (WebView)findViewById(R.id.webViewId);
-
         webView.getSettings().setJavaScriptEnabled(true);
-
         webView.setWebViewClient(new WebViewClient());
-
         webView.loadUrl("https://www.brainyquote.com/top_100_quotes");
-
 */
         listView = (ListView)findViewById(R.id.quoteListViewId);
         list = new ArrayList();
@@ -169,14 +164,11 @@ public class QuoteActivity extends AppCompatActivity {
                 arrayAdapter.notifyDataSetChanged();
 /*
                 listView.setAdapter(arrayAdapter);
-
                 set(quotee, author);
-
                 list = new ArrayList();
                 list.add(quotee);
                 list.add(author);
                 sharedPreferences = this.getSharedPreferences("com.example.karishma.mypersonaldiary", Context.MODE_PRIVATE);
-
                 try{
                     sharedPreferences.edit().putString("List", ObjectSerializer.serialize(list)).apply();
                 }
@@ -184,10 +176,8 @@ public class QuoteActivity extends AppCompatActivity {
                 {
                     e.printStackTrace();
                     Toast.makeText(DatesGoalsNotesActivity.this,"Error in deleting Note! in OnCreate()", Toast.LENGTH_SHORT).show();                                }
-
                 }
                 listView.setAdapter(arrayAdapter);
-
                 arrayAdapter.notifyDataSetChanged();
 */
             }

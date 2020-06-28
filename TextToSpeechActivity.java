@@ -18,17 +18,10 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
-//import static com.example.translator.SavedNotesActivity.arrayAdapter;
-//import static com.example.translator.SavedNotesActivity.notesList;
-//import static com.example.translator.SavedNotesActivity.notesListView;
-//import static com.example.translator.SavedNotesActivity.sharedPreferences;
-
-
 public class TextToSpeechActivity extends AppCompatActivity {
 
     SeekBar speedSeekBar;
     SeekBar pitchSeekBar ;
-  //  EditText editText = (EditText)findViewById(R.id.editTextId);
     TextToSpeech tts;
     Button translateButton;
     Button stopButton;
@@ -42,41 +35,12 @@ public class TextToSpeechActivity extends AppCompatActivity {
         saveButton1.setEnabled(false);
         EditText editText = (EditText)findViewById(R.id.editText1Id);
 
-/*
-     //   notesListView = (ListView)findViewById(R.id.ListViewId);
-        notesList = new ArrayList<>();
-        sharedPreferences = this.getSharedPreferences("com.example.karishma.mypersonaldiary", Context.MODE_PRIVATE);
-
-        try{
-            notesList =(ArrayList)ObjectSerializer.deserialize(sharedPreferences.getString("NotesList", ObjectSerializer.serialize(new ArrayList<String>())));
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-
-        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,notesList);
-        notesList.add(editText.getText().toString());
-        arrayAdapter.notifyDataSetChanged();
-//        notesListView.setAdapter(arrayAdapter);
-
-        try{
-            sharedPreferences.edit().putString("NotesList", ObjectSerializer.serialize(notesList)).apply();
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-            Toast.makeText(getApplicationContext(),"Error in saving Note! from TextToSpeechActiviy", Toast.LENGTH_SHORT).show();
-        }
-*/
-
         DatesGoalsNotesActivity.sharedPreferences = this.getSharedPreferences("com.example.karishma.assistme", Context.MODE_PRIVATE);
 
-        try{
+        try {
             DatesGoalsNotesActivity.sharedPreferences.edit().putString("NotesList", ObjectSerializer.serialize(DatesGoalsNotesActivity.notesList)).apply();
         }
-        catch(Exception e)
-        {
+        catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -85,40 +49,37 @@ public class TextToSpeechActivity extends AppCompatActivity {
 
         try {
             DatesGoalsNotesActivity.sharedPreferences.edit().putString("NotesList", ObjectSerializer.serialize(DatesGoalsNotesActivity.notesList)).apply();
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    public void stop(View view) {
 
-    public void stop(View view)
-    {
         stopButton = (Button)findViewById(R.id.stopButtonId);
         tts.stop();
         stopButton.setEnabled(false);
     }
 
-    public void enable(View view)
-    {
+    public void enable(View view) {
+
         saveButton1 = (Button)findViewById(R.id.saveButton1Id);
         saveButton1.setEnabled(true);
     }
 
-    public void translate(View view)
-    {
-
-
+    public void translate(View view) {
 
     }
 
-    public void langRadioGroupMethod()
-    {
+    public void langRadioGroupMethod() {
+
         RadioGroup langRadioGroup = (RadioGroup)findViewById(R.id.langRadioGroupId);
         RadioButton selectedLang = (RadioButton)findViewById(langRadioGroup.getCheckedRadioButtonId());
 
         String lang = (String)selectedLang.getText();
-        switch(lang)
-        {
+        switch(lang) {
+
             case "English" :
                 loc = Locale.ENGLISH;
                 break;
@@ -132,17 +93,16 @@ public class TextToSpeechActivity extends AppCompatActivity {
                 loc = Locale.ITALIAN;
                 break;
         }
-
     }
 
-    public void voiceRadioGroupMethod()
-    {
+    public void voiceRadioGroupMethod() {
+
         RadioGroup voiceRadioGroup = (RadioGroup)findViewById(R.id.voiceRadioGroupId);
         RadioButton selectedVoice = (RadioButton)findViewById(voiceRadioGroup.getCheckedRadioButtonId());
 
         String voiceString = (String)selectedVoice.getText();
-        switch(voiceString)
-        {
+        switch(voiceString) {
+
             case "Female" :
                 voice = null;
                 break;
@@ -152,12 +112,10 @@ public class TextToSpeechActivity extends AppCompatActivity {
                 voice =new Voice("en-us-x-sfg#male_2-local",loc,400,200,true,a);
                 break;
         }
-
     }
 
+    public void speak() {
 
-    public void speak()
-    {
         EditText editText = (EditText)findViewById(R.id.editText1Id);
         speedSeekBar = (SeekBar)findViewById(R.id.seekBarSpeedId);
         pitchSeekBar = (SeekBar)findViewById(R.id.seekBarPitchId);
@@ -168,20 +126,16 @@ public class TextToSpeechActivity extends AppCompatActivity {
         voiceRadioGroupMethod();
 
         String text = editText.getText().toString();
-//        if(!text.equals(""))
-//        {
-//            saveButton1.setEnabled(true);
-//        }
 
         float speed = (float)speedSeekBar.getProgress()/50;
         float pitch = (float)pitchSeekBar.getProgress()/50;
-        if(speed < 0.1)
-        {
+        if(speed < 0.1) {
+
             speed = 0.1f;
             speedSeekBar.setProgress((int)(speed*50));
         }
-        if(pitch < 0.1)
-        {
+        if(pitch < 0.1) {
+
             pitch = 0.1f;
             pitchSeekBar.setProgress((int)(pitch*50));
         }
@@ -190,8 +144,7 @@ public class TextToSpeechActivity extends AppCompatActivity {
         tts.setSpeechRate(speed);
         tts.setLanguage(loc);
 
-        if(voice != null)
-        {
+        if(voice != null) {
             tts.setVoice(voice);
         }
 
@@ -199,13 +152,10 @@ public class TextToSpeechActivity extends AppCompatActivity {
         stopButton.setEnabled(true);
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text_to_speech);
-
-        //Locale lang;
 
         translateButton = (Button)findViewById(R.id.buttonId);
 
@@ -218,25 +168,21 @@ public class TextToSpeechActivity extends AppCompatActivity {
 
                     if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                         Toast.makeText(TextToSpeechActivity.this, "Language not supported!", Toast.LENGTH_SHORT).show();
-                    } else {
+                    }
+                    else {
                         translateButton.setEnabled(true);
                     }
                 }
                 else {
                     Toast.makeText(TextToSpeechActivity.this, "Invalid text! Please enter again!", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
-
-
 
         translateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 speak();
-
             }
         });
     }
@@ -245,8 +191,8 @@ public class TextToSpeechActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
 
-        if(tts != null)
-        {
+        if(tts != null) {
+
             tts.stop();
             tts.shutdown();
         }

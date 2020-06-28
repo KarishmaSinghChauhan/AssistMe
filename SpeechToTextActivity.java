@@ -33,19 +33,18 @@ public class SpeechToTextActivity extends AppCompatActivity {
     Locale loc;
     Button saveButton2;
 
-    public void save(View view)
-    {
+    public void save(View view) {
+
         saveButton2 = (Button)findViewById(R.id.saveButton2Id);
         saveButton2.setEnabled(false);
         editText = (EditText)findViewById(R.id.editText2Id);
 
         DatesGoalsNotesActivity.sharedPreferences = this.getSharedPreferences("com.example.karishma.assistme", Context.MODE_PRIVATE);
 
-        try{
+        try {
             DatesGoalsNotesActivity.sharedPreferences.edit().putString("NotesList", ObjectSerializer.serialize(DatesGoalsNotesActivity.notesList)).apply();
         }
-        catch(Exception e)
-        {
+        catch(Exception e) {
             e.printStackTrace();
         }
 
@@ -54,25 +53,25 @@ public class SpeechToTextActivity extends AppCompatActivity {
 
         try {
             DatesGoalsNotesActivity.sharedPreferences.edit().putString("NotesList", ObjectSerializer.serialize(DatesGoalsNotesActivity.notesList)).apply();
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void enable(View view)
-    {
+    public void enable(View view) {
         saveButton2 = (Button)findViewById(R.id.saveButton2Id);
         saveButton2.setEnabled(true);
     }
 
-    public void langRadioGroupMethod()
-    {
+    public void langRadioGroupMethod() {
+
         RadioGroup langRadioGroup = (RadioGroup)findViewById(R.id.radioGroupId);
         RadioButton selectedLang = (RadioButton)findViewById(langRadioGroup.getCheckedRadioButtonId());
-
         String lang = (String)selectedLang.getText();
-        switch(lang)
-        {
+
+        switch(lang) {
+
             case "English" :
                 loc = Locale.ENGLISH;
                 break;
@@ -86,7 +85,6 @@ public class SpeechToTextActivity extends AppCompatActivity {
                 loc = Locale.ITALIAN;
                 break;
         }
-
     }
 
     @Override
@@ -144,12 +142,11 @@ public class SpeechToTextActivity extends AppCompatActivity {
 
                 ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
 
-                if(matches != null)
-                {
+                if(matches != null) {
+
                     editText.setText(matches.get(0));
                     saveButton2.setEnabled(true);
                 }
-
             }
 
             @Override
@@ -187,15 +184,12 @@ public class SpeechToTextActivity extends AppCompatActivity {
                 return false;
             }
         });
-
     }
 
-    public void checkPermission()
-    {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-        {
-            if(!(ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED))
-            {
+    public void checkPermission() {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if(!(ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED)) {
+
                 Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:"+getPackageName()));
                 startActivity(intent);
                 finish();

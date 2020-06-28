@@ -19,7 +19,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
-
 public class DatesGoalsNotesActivity extends AppCompatActivity {
 
     Intent intent;
@@ -27,7 +26,6 @@ public class DatesGoalsNotesActivity extends AppCompatActivity {
     static ListView notesListView;
     static ArrayAdapter arrayAdapter;
     static SharedPreferences sharedPreferences;
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -42,19 +40,12 @@ public class DatesGoalsNotesActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
 
-//        notesListView = (ListView)findViewById(R.id.ListViewId);
-//        notesList = new ArrayList<>();
-
-
-        if(item.getItemId()==R.id.addNotesId)
-        {
+        if(item.getItemId()==R.id.addNotesId) {
             intent = new Intent(getApplicationContext(), DatesGoalsNotes2Activity.class);
             startActivity(intent);
             return true;
         }
-
-        else if(item.getItemId()==R.id.deleteAllId)
-        {
+        else if(item.getItemId()==R.id.deleteAllId) {
             new AlertDialog.Builder(DatesGoalsNotesActivity.this)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setTitle("Delete Notes")
@@ -65,8 +56,7 @@ public class DatesGoalsNotesActivity extends AppCompatActivity {
 
                             notesList.clear();
 
-                            if(notesList.size()==0)
-                            {
+                            if(notesList.size()==0) {
                                 notesList.add("Tap to add your first entry...");
                             }
 
@@ -75,17 +65,14 @@ public class DatesGoalsNotesActivity extends AppCompatActivity {
                             try{
                                 sharedPreferences.edit().putString("NotesList", ObjectSerializer.serialize(notesList)).apply();
                             }
-                            catch(Exception e)
-                            {
+                            catch(Exception e) {
                                 e.printStackTrace();
                                 Toast.makeText(DatesGoalsNotesActivity.this,"Error in deleting all Notes via the menu", Toast.LENGTH_SHORT).show();
                             }
-
                         }
                     })
                     .setNegativeButton("No", null)
                     .show();
-
         }
 
         return false;
@@ -99,23 +86,19 @@ public class DatesGoalsNotesActivity extends AppCompatActivity {
         notesListView = (ListView)findViewById(R.id.ListViewId);
         notesList = new ArrayList<>();
         notesList.add("Tap to add your first entry...");
-
         sharedPreferences = this.getSharedPreferences("com.example.karishma.assistme", Context.MODE_PRIVATE);
 
         try{
             notesList =(ArrayList)ObjectSerializer.deserialize(sharedPreferences.getString("NotesList", ObjectSerializer.serialize(new ArrayList<String>())));
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             e.printStackTrace();
         }
 
-        if(notesList == null)
-        {
+        if(notesList == null) {
             notesList = new ArrayList<>();
             notesList.add("Tap to add your first entry...");
         }
-
 
         arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, notesList);
         notesListView.setAdapter(arrayAdapter);
@@ -129,7 +112,6 @@ public class DatesGoalsNotesActivity extends AppCompatActivity {
                 intent.putExtra("notesMaterial", notesList.get(position));
                 intent.putExtra("listPosition", position);
                 startActivity(intent);
-
             }
         });
 
@@ -147,8 +129,7 @@ public class DatesGoalsNotesActivity extends AppCompatActivity {
 
                                                                          notesList.remove(position);
 
-                                                                         if(notesList.size()==0)
-                                                                         {
+                                                                         if(notesList.size()==0) {
                                                                              notesList.add("Tap to add your first entry...");
                                                                          }
 
@@ -157,18 +138,15 @@ public class DatesGoalsNotesActivity extends AppCompatActivity {
                                                                          try{
                                                                              sharedPreferences.edit().putString("NotesList", ObjectSerializer.serialize(notesList)).apply();
                                                                          }
-                                                                         catch(Exception e)
-                                                                         {
+                                                                         catch(Exception e) {
                                                                              e.printStackTrace();
                                                                              Toast.makeText(DatesGoalsNotesActivity.this,"Error in deleting Note! in OnCreate()", Toast.LENGTH_SHORT).show();
                                                                          }
-
                                                                      }
                                                                  })
                                                                  .setNegativeButton("No", null)
                                                                  .show();
                                                          return true;
-
                                                      }
                                                  }
         );
