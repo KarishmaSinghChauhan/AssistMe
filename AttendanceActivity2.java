@@ -16,8 +16,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
-
 import static com.example.assistme.AttendanceActivity.sharedPreferences;
 import static com.example.assistme.AttendanceActivity.subjectList;
 
@@ -54,7 +52,7 @@ public class AttendanceActivity2 extends AppCompatActivity {
             subjectList.set(pos,s);
             sharedPreferences = this.getSharedPreferences("com.example.karishma.mypersonaldiary", Context.MODE_PRIVATE);
             sharedPreferences.edit().putString("SUBJECTLIST", ObjectSerializer.serialize(subjectList)).apply();
-            subjectList = (ArrayList) ObjectSerializer.deserialize(sharedPreferences.getString("SUBJECTLIST", ObjectSerializer.serialize(new ArrayList<String>())));
+//            subjectList = (ArrayList) ObjectSerializer.deserialize(sharedPreferences.getString("SUBJECTLIST", ObjectSerializer.serialize(new ArrayList<String>())));
         }
         catch (Exception ee) {
             ee.printStackTrace();
@@ -69,12 +67,8 @@ public class AttendanceActivity2 extends AppCompatActivity {
             com.example.assistme.AttendanceActivity.subjectListView.setAdapter(com.example.assistme.AttendanceActivity.arrayAdapter);
         }
 
-        InputMethodManager inputManager =
-                (InputMethodManager) getApplicationContext().
-                        getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputManager.hideSoftInputFromWindow(
-                this.getCurrentFocus().getWindowToken(),
-                InputMethodManager.HIDE_NOT_ALWAYS);
+        InputMethodManager inputManager = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     public void updateAttendance(View view) {
@@ -130,21 +124,17 @@ public class AttendanceActivity2 extends AppCompatActivity {
                 if (f >= minA) {
                     summaryTextView.setText("Good job! It seems you have regularly attended your classes. :)");
                 }
-
             }
             else {
                 Toast.makeText(getApplicationContext(), "Minimum percentage must not be greater than 100%", Toast.LENGTH_SHORT).show();
             }
-        } catch (Exception l) {
+        }
+        catch (Exception l) {
             Toast.makeText(getApplicationContext(), "Please enter the minimum attendance to proceed! (Error in MinAtt %)", Toast.LENGTH_SHORT).show();
         }
 
-        InputMethodManager inputManager =
-                (InputMethodManager) getApplicationContext().
-                        getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputManager.hideSoftInputFromWindow(
-                this.getCurrentFocus().getWindowToken(),
-                InputMethodManager.HIDE_NOT_ALWAYS);
+        InputMethodManager inputManager = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
         intent = getIntent();
         String subName = (intent.getStringExtra("subjectName"));
@@ -210,11 +200,6 @@ public class AttendanceActivity2 extends AppCompatActivity {
             for (int i = 0; i <= count -1; i++) {
 
                 if(i== pos) {
-                    Log.i("positions = ", Integer.toString(c.getInt(positionsIndex)));
-                    Log.i("subject = ", c.getString(subjectIndex));
-                    Log.i("id = ", Integer.toString(c.getInt(idIndex)));
-                    Log.i("present = ", Double.toString(c.getDouble(presentIndex)));
-                    Log.i("absent = ", Double.toString(c.getDouble(absentIndex)));
 
                     presentTextView.setText((CharSequence)(Double.toString(c.getDouble(presentIndex))));
                     absentTextView.setText((CharSequence)(Double.toString(c.getDouble(absentIndex))));

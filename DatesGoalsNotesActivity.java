@@ -108,47 +108,46 @@ public class DatesGoalsNotesActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                intent = new Intent(getApplicationContext(), DatesGoalsNotes2Activity.class);
-                intent.putExtra("notesMaterial", notesList.get(position));
-                intent.putExtra("listPosition", position);
-                startActivity(intent);
+            intent = new Intent(getApplicationContext(), DatesGoalsNotes2Activity.class);
+            intent.putExtra("notesMaterial", notesList.get(position));
+            intent.putExtra("listPosition", position);
+            startActivity(intent);
             }
         });
 
         notesListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-                                                     @Override
-                                                     public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+             @Override
+             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
 
-                                                         new AlertDialog.Builder(DatesGoalsNotesActivity.this)
-                                                                 .setIcon(android.R.drawable.ic_dialog_alert)
-                                                                 .setTitle("Delete Note")
-                                                                 .setMessage("Do you really want to delete this note?")
-                                                                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                                                     @Override
-                                                                     public void onClick(DialogInterface dialog, int which) {
+                 new AlertDialog.Builder(DatesGoalsNotesActivity.this)
+                         .setIcon(android.R.drawable.ic_dialog_alert)
+                         .setTitle("Delete Note")
+                         .setMessage("Do you really want to delete this note?")
+                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                             @Override
+                             public void onClick(DialogInterface dialog, int which) {
 
-                                                                         notesList.remove(position);
+                                 notesList.remove(position);
 
-                                                                         if(notesList.size()==0) {
-                                                                             notesList.add("Tap to add your first entry...");
-                                                                         }
+                                 if(notesList.size()==0) {
+                                     notesList.add("Tap to add your first entry...");
+                                 }
 
-                                                                         arrayAdapter.notifyDataSetChanged();
+                                 arrayAdapter.notifyDataSetChanged();
 
-                                                                         try{
-                                                                             sharedPreferences.edit().putString("NotesList", ObjectSerializer.serialize(notesList)).apply();
-                                                                         }
-                                                                         catch(Exception e) {
-                                                                             e.printStackTrace();
-                                                                             Toast.makeText(DatesGoalsNotesActivity.this,"Error in deleting Note! in OnCreate()", Toast.LENGTH_SHORT).show();
-                                                                         }
-                                                                     }
-                                                                 })
-                                                                 .setNegativeButton("No", null)
-                                                                 .show();
-                                                         return true;
-                                                     }
-                                                 }
-        );
+                                 try{
+                                     sharedPreferences.edit().putString("NotesList", ObjectSerializer.serialize(notesList)).apply();
+                                 }
+                                 catch(Exception e) {
+                                     e.printStackTrace();
+                                     Toast.makeText(DatesGoalsNotesActivity.this,"Error in deleting Note! in OnCreate()", Toast.LENGTH_SHORT).show();
+                                 }
+                             }
+                         })
+                         .setNegativeButton("No", null)
+                         .show();
+                 return true;
+             }
+        });
     }
 }

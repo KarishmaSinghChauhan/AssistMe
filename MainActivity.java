@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         listView = (ListView)findViewById(R.id.listViewId);
-
         mainList = new ArrayList<String>();
         mainList.add("Attendance");
         mainList.add("Speech to Text");

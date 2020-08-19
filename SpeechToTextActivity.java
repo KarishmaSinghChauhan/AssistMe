@@ -71,7 +71,6 @@ public class SpeechToTextActivity extends AppCompatActivity {
         String lang = (String)selectedLang.getText();
 
         switch(lang) {
-
             case "English" :
                 loc = Locale.ENGLISH;
                 break;

@@ -1,13 +1,11 @@
 package com.example.assistme;
 
-
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -45,36 +43,25 @@ public class QuoteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quote);
 
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //sharedPreferences.edit().remove("List").apply();
-        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        /*
-        WebView webView = (WebView)findViewById(R.id.webViewId);
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.setWebViewClient(new WebViewClient());
-        webView.loadUrl("https://www.brainyquote.com/top_100_quotes");
-*/
         listView = (ListView)findViewById(R.id.quoteListViewId);
         list = new ArrayList();
         arrayAdapter = new ArrayAdapter(QuoteActivity.this, android.R.layout.simple_list_item_1,list);
         listView.setAdapter(arrayAdapter);
 
-        //       sharedPreferences.edit().remove("List").apply();
+        //sharedPreferences.edit().remove("List").apply();
 
         quotesDB = this.openOrCreateDatabase("Quotes",MODE_PRIVATE, null);
         quotesDB.execSQL("CREATE TABLE IF NOT EXISTS quotes (quote VARCHAR, author VARCHAR)");
         quotesDB.execSQL("DELETE FROM quotes");
 
-//HEREEEEE
-
         DownloadTask task = new DownloadTask();
 
-        try{
-
+        try {
             task.execute("https://favqs.com/api/qotd");
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             e.printStackTrace();
         }
@@ -82,20 +69,19 @@ public class QuoteActivity extends AppCompatActivity {
         //  listView.setAdapter(arrayAdapter);
         //  set(quotee, author);
 
-
-//        sharedPreferences = this.getSharedPreferences("com.example.karishma.mypersonaldiary", Context.MODE_PRIVATE);
-//        try{
-        //           list =(ArrayList)ObjectSerializer.deserialize(sharedPreferences.getString("List", ObjectSerializer.serialize(new ArrayList<String>())));
-        //       }
-        //       catch (Exception e)
-        //       {
-        //           e.printStackTrace();
-        //      }
-
+        /*
+        sharedPreferences = this.getSharedPreferences("com.example.karishma.mypersonaldiary", Context.MODE_PRIVATE);
+        try{
+            list =(ArrayList)ObjectSerializer.deserialize(sharedPreferences.getString("List", ObjectSerializer.serialize(new ArrayList<String>())));
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        */
     }
 
     public class DownloadTask extends AsyncTask<String,Void,String>{
-
 
         @Override
         protected String doInBackground(String... strings) {
@@ -104,8 +90,7 @@ public class QuoteActivity extends AppCompatActivity {
             URL url;
             HttpURLConnection urlConnection = null;
 
-            try{
-
+            try {
                 url = new URL(strings[0]);
 
                 urlConnection = (HttpURLConnection)url.openConnection();
@@ -118,32 +103,29 @@ public class QuoteActivity extends AppCompatActivity {
 
                 while(data != -1)
                 {
-
                     char current = (char)data;
 
                     result += current;
 
                     data = reader.read();
-
                 }
 
-                Log.i("URLContent : ", result);
+//                Log.i("URLContent : ", result);
 
                 JSONObject jsonObject = new JSONObject(result);
 
                 String quote = jsonObject.getString("quote");
                 //   String quote = jsonObject.getString("body");
-
                 //   Log.i("Quote : " , quote);
-                Log.i("Quote : ", quote);
+//                Log.i("Quote : ", quote);
 
                 JSONObject jsonObject2 = new JSONObject(quote);
 
                 author = jsonObject2.getString("author");
                 quotee = jsonObject2.getString("body");
 
-                Log.i("Quotee : " , quotee);
-                Log.i("Author : ", author);
+//                Log.i("Quotee : " , quotee);
+//                Log.i("Author : ", author);
 
                 String sql = "INSERT INTO quotes (quote, author) VALUES (?,?)";
                 SQLiteStatement statement = quotesDB.compileStatement(sql);
@@ -189,9 +171,5 @@ public class QuoteActivity extends AppCompatActivity {
 
             return null;
         }
-
-//HEREEEEEE
-
     }
-
 }

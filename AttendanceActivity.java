@@ -8,7 +8,6 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -69,15 +68,10 @@ public class AttendanceActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            InputMethodManager inputManager = (InputMethodManager) getApplicationContext().
-                    getSystemService(Context.INPUT_METHOD_SERVICE);
-            inputManager.hideSoftInputFromWindow(
-                    this.getCurrentFocus().getWindowToken(),
-                    InputMethodManager.HIDE_NOT_ALWAYS);
+            InputMethodManager inputManager = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
             Toast.makeText(getApplicationContext(), (subjectList.toString()), Toast.LENGTH_SHORT).show();
-
-            Intent intent = new Intent(getApplicationContext(),AttendanceActivity2.class);
         }
     }
 
@@ -91,8 +85,8 @@ public class AttendanceActivity extends AppCompatActivity {
 
         try {
             subjectList = (ArrayList) ObjectSerializer.deserialize(sharedPreferences.getString("SUBJECTLIST", ObjectSerializer.serialize(new ArrayList<String>())));
-        } catch (Exception e) {
-
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
         Toast.makeText(getApplicationContext(), (subjectList.toString()), Toast.LENGTH_SHORT).show();
@@ -112,32 +106,6 @@ public class AttendanceActivity extends AppCompatActivity {
                     SQLiteDatabase vattendanceDB = getApplicationContext().openOrCreateDatabase("Vattendance", MODE_PRIVATE, null);
                     vattendanceDB.execSQL("CREATE TABLE IF NOT EXISTS vattendance (positions INT, subject VARCHAR, present DOUBLE, absent DOUBLE, minAtt DOUBLE, id INTEGER PRIMARY KEY)");
                     Cursor c = vattendanceDB.rawQuery("SELECT * FROM vattendance", null);
-
-                    int positionsIndex = c.getColumnIndex("positions");
-                    int subjectIndex = c.getColumnIndex("subject");
-                    int presentIndex = c.getColumnIndex("present");
-                    int absentIndex = c.getColumnIndex("absent");
-                    int minAttIndex = c.getColumnIndex("minAtt");
-                    int idIndex = c.getColumnIndex("id");
-                    c.moveToFirst();
-                    count = c.getCount();
-
-                    for (int i = 0; i <= count -1; i++) {
-
-                        if(i== position) {
-                            //DISPLAY THE DATABASE FIELDS IN THEIR RESPECTIVE TEXTFEILDS
-                            Log.i("POSITION of subject = ", Long.toString(id));
-                            Log.i("positions = ", Integer.toString(c.getInt(positionsIndex)));
-                            Log.i("subject = ", c.getString(subjectIndex));
-                            Log.i("id = ", Integer.toString(c.getInt(idIndex)));
-                            Log.i("present = ", Double.toString(c.getDouble(presentIndex)));
-                            Log.i("absent = ", Double.toString(c.getDouble(absentIndex)));
-                            Log.i("cursor count = ", Integer.toString(count));
-                            break;
-                        }
-
-                        c.moveToNext();
-                    }
 
                     int ID = (int) id;
                     subName = subjectList.get(ID);

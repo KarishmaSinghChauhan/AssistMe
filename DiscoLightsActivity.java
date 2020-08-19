@@ -8,7 +8,6 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -51,8 +50,7 @@ public class DiscoLightsActivity extends AppCompatActivity {
             @Override
             public void onLocationChanged(Location location) {
 
-                Log.i("Location", location.toString());
-
+//                Log.i("Location", location.toString());
                 Random rand = new Random();
                 int r = rand.nextInt(256);
                 int g = rand.nextInt(256);

@@ -32,13 +32,13 @@ public class DatesGoalsNotes2Activity extends AppCompatActivity {
 
         DatesGoalsNotesActivity.sharedPreferences = this.getSharedPreferences("com.example.karishma.assistme", Context.MODE_PRIVATE);
 
-        try{
-            DatesGoalsNotesActivity.sharedPreferences.edit().putString("NotesList", ObjectSerializer.serialize(DatesGoalsNotesActivity.notesList)).apply();
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
+//        try{
+//            DatesGoalsNotesActivity.sharedPreferences.edit().putString("NotesList", ObjectSerializer.serialize(DatesGoalsNotesActivity.notesList)).apply();
+//        }
+//        catch(Exception e)
+//        {
+//            e.printStackTrace();
+//        }
 
         pos = intent.getIntExtra("listPosition",-1);
         if (pos != -1) {

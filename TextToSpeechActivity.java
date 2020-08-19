@@ -108,8 +108,8 @@ public class TextToSpeechActivity extends AppCompatActivity {
                 break;
             case "Male" :
                 Set<String> a=new HashSet<>();
-                a.add("male");//here you can give male if you want to select male voice.
-                voice =new Voice("en-us-x-sfg#male_2-local",loc,400,200,true,a);
+                a.add("male"); // here you can give male if you want to select male voice.
+                voice = new Voice("en-us-x-sfg#male_1-local",loc,400,200,true,a);
                 break;
         }
     }
@@ -126,16 +126,13 @@ public class TextToSpeechActivity extends AppCompatActivity {
         voiceRadioGroupMethod();
 
         String text = editText.getText().toString();
-
         float speed = (float)speedSeekBar.getProgress()/50;
         float pitch = (float)pitchSeekBar.getProgress()/50;
         if(speed < 0.1) {
-
             speed = 0.1f;
             speedSeekBar.setProgress((int)(speed*50));
         }
         if(pitch < 0.1) {
-
             pitch = 0.1f;
             pitchSeekBar.setProgress((int)(pitch*50));
         }
@@ -192,7 +189,6 @@ public class TextToSpeechActivity extends AppCompatActivity {
         super.onDestroy();
 
         if(tts != null) {
-
             tts.stop();
             tts.shutdown();
         }
