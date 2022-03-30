@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_quote"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context="com.example.assistme.QuoteActivity">
+
+    <TextView
+        android:id="@+id/quoteTextViewId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView4"
+        android:layout_marginTop="80dp"
+        android:padding="20dp"
+        android:textAlignment="center"
+        android:textColor="#0077b6"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorTitleBackground"
+        android:gravity="center"
+        android:text="Random Quote"
+        android:textColor="@android:color/background_dark"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/authorTextViewId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/quoteTextViewId"
+        android:layout_marginTop="3dp"
+        android:textAlignment="center"
+        android:textColor="#023e8a"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/anotherQuoteBtnId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="151dp"
+        android:layout_marginBottom="99dp"
+        android:background="#03A9F4"
+        android:onClick="randomQuote"
+        android:padding="16dp"
+        android:text="Another one!" />
+
+</RelativeLayout>

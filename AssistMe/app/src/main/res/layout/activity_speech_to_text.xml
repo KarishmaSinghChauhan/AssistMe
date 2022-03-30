@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/micImageButtonId"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context=".SpeechToTextActivity">
+
+    <Button
+        android:id="@+id/clrButtonId"
+        android:layout_width="76dp"
+        android:layout_height="35dp"
+        android:layout_below="@+id/editText2Id"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="270dp"
+        android:background="#d00000"
+        android:enabled="true"
+        android:onClick="clear"
+        android:text="clear" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorTitleBackground"
+        android:gravity="center"
+        android:text="Speech to Text"
+        android:textColor="#0A0A0A"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/editText2Id"
+        android:layout_width="match_parent"
+        android:layout_height="460dp"
+        android:layout_below="@+id/textView2"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="The translated speech text will appear here.."
+        android:inputType="textMultiLine"
+        android:onClick="enable"
+        android:padding="8dp"
+        android:textColor="#9C27B0" />
+
+    <ImageButton
+        android:id="@+id/speakImageButtonId"
+        android:layout_width="87dp"
+        android:layout_height="84dp"
+        android:layout_below="@+id/saveButtonId"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="165dp"
+        android:adjustViewBounds="true"
+        android:background="@color/colorBackground"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/mic_image" />
+
+    <Button
+        android:id="@+id/saveButtonId"
+        android:layout_width="76dp"
+        android:layout_height="35dp"
+        android:layout_below="@+id/editText2Id"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="70dp"
+        android:background="#03A9F4"
+        android:enabled="true"
+        android:onClick="save"
+        android:text="save" />
+
+</RelativeLayout>
