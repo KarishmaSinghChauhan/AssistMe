@@ -44,7 +44,7 @@
         android:inputType="textMultiLine"
         android:onClick="enable"
         android:padding="8dp"
-        android:textColor="#9C27B0" />
+        android:textColor="#023e8a" />
 
     <ImageButton
         android:id="@+id/speakImageButtonId"

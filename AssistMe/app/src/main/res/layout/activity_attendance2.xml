@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_attendance2"
     android:screenOrientation="portrait"
+    android:background="@color/colorBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
@@ -31,7 +32,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:text="Absent   : "
-        android:textColor="#52b69a"
+        android:textColor="#34a0a4"
         android:textSize="18sp" />
 
     <TextView
@@ -41,10 +42,10 @@
         android:layout_below="@+id/absentEditText"
         android:layout_alignParentStart="true"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="16dp"
         android:text="Present  : "
-        android:textColor="#76c893"
+        android:textColor="#52b69a"
         android:textSize="18sp" />
 
     <TextView
@@ -56,7 +57,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:text="Total       : "
-        android:textColor="#34a0a4"
+        android:textColor="#168aad"
         android:textSize="18sp" />
 
     <TextView
@@ -68,7 +69,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:text="Percent  :  "
-        android:textColor="#168aad"
+        android:textColor="#1a759f"
         android:textSize="18sp" />
 
     <TextView
@@ -77,8 +78,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/totalTextView"
         android:layout_toEndOf="@+id/textView14"
-        android:textColor="#168aad"
-        android:textSize="18sp" />
+        android:textColor="#1a759f"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/totalTextView"
@@ -86,7 +88,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/absentTextView"
         android:layout_toEndOf="@+id/textView14"
-        android:textColor="#34a0a4"
+        android:textColor="#168aad"
         android:textSize="18sp" />
 
     <TextView
@@ -95,7 +97,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/presentTextView"
         android:layout_alignStart="@+id/totalTextView"
-        android:textColor="#52b69a"
+        android:textColor="#34a0a4"
         android:textSize="18sp" />
 
     <TextView
@@ -107,23 +109,23 @@
         android:layout_alignStart="@+id/absentTextView"
         android:layout_marginStart="1dp"
         android:layout_marginTop="24dp"
-        android:textColor="#76c893"
+        android:textColor="#52b69a"
         android:textSize="18sp" />
 
     <EditText
-        android:layout_width="match_parent"
-        android:inputType="numberDecimal"
-        android:ems="10"
         android:id="@+id/minAttEditText"
-        android:hint="What's the least required attendance % ?"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="15sp"
-        android:layout_marginTop="78dp"
-        android:onClick="updateAttendance"
         android:layout_below="@+id/textView14"
         android:layout_alignParentStart="true"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"/>
+        android:layout_marginTop="160dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="What's the least required attendance % ?"
+        android:inputType="numberDecimal"
+        android:onClick="updateAttendance"
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/textView17"
@@ -145,7 +147,8 @@
         android:layout_marginEnd="16dp"
         android:layout_toEndOf="@+id/textView17"
         android:text="--"
-        android:textColor="#0077b6" />
+        android:textColor="#0077b6"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/summaryTextView"
@@ -173,16 +176,16 @@
         android:onClick="updateAttendance" />
 
     <EditText
+        android:id="@+id/subject"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/subject"
-        android:textSize="26sp"
-        android:gravity = "center"
-        android:onClick="rename"
-        android:background="#85CF85"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:background="#85CF85"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        android:onClick="rename"
+        android:textSize="24sp" />
 
 </RelativeLayout>
