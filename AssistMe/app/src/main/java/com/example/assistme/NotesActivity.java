@@ -19,7 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class DatesGoalsNotesActivity extends AppCompatActivity {
+public class NotesActivity extends AppCompatActivity {
 
     static ListView notesListView;
     static ListAdapter arrayAdapter;
@@ -51,12 +51,12 @@ public class DatesGoalsNotesActivity extends AppCompatActivity {
         super.onOptionsItemSelected(item);
 
         if(item.getItemId()==R.id.addNotesId) {
-            intent = new Intent(getApplicationContext(), DatesGoalsNotes2Activity.class);
+            intent = new Intent(getApplicationContext(), Notes2Activity.class);
             startActivity(intent);
             return true;
         }
         else if(item.getItemId()==R.id.deleteAllId) {
-            new AlertDialog.Builder(DatesGoalsNotesActivity.this)
+            new AlertDialog.Builder(NotesActivity.this)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setTitle("Delete Notes")
                     .setMessage("Do you really want to delete all the saved notes?")
@@ -68,7 +68,7 @@ public class DatesGoalsNotesActivity extends AppCompatActivity {
                             addFirstNote();
 
                             notesList = db.getNotes();
-                            arrayAdapter = new SimpleAdapter(DatesGoalsNotesActivity.this, notesList, R.layout.notes_list_row, from, to);
+                            arrayAdapter = new SimpleAdapter(NotesActivity.this, notesList, R.layout.notes_list_row, from, to);
                             notesListView.setAdapter(arrayAdapter);
                         }
                     })
@@ -82,10 +82,10 @@ public class DatesGoalsNotesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dates_goals_notes);
+        setContentView(R.layout.activity_notes);
 
         notesListView = (ListView)findViewById(R.id.ListViewId);
-        db = new DbHandler(DatesGoalsNotesActivity.this);
+        db = new DbHandler(NotesActivity.this);
         from = new String[]{"title", "body"};
         to = new int[]{R.id.noteTitle, R.id.noteBody};
         notesList = db.getNotes();
@@ -103,7 +103,7 @@ public class DatesGoalsNotesActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-            intent = new Intent(getApplicationContext(), DatesGoalsNotes2Activity.class);
+            intent = new Intent(getApplicationContext(), Notes2Activity.class);
             intent.putExtra("listPosition", position);
             startActivity(intent);
             }
@@ -113,7 +113,7 @@ public class DatesGoalsNotesActivity extends AppCompatActivity {
              @Override
              public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
 
-                 new AlertDialog.Builder(DatesGoalsNotesActivity.this)
+                 new AlertDialog.Builder(NotesActivity.this)
                          .setIcon(android.R.drawable.ic_dialog_alert)
                          .setTitle("Delete Note")
                          .setMessage("Do you really want to delete this note?")
@@ -132,7 +132,7 @@ public class DatesGoalsNotesActivity extends AppCompatActivity {
                                  }
 
                                  notesList = db.getNotes();
-                                 arrayAdapter = new SimpleAdapter(DatesGoalsNotesActivity.this, notesList, R.layout.notes_list_row, from, to);
+                                 arrayAdapter = new SimpleAdapter(NotesActivity.this, notesList, R.layout.notes_list_row, from, to);
                                  notesListView.setAdapter(arrayAdapter);
                              }
                          })

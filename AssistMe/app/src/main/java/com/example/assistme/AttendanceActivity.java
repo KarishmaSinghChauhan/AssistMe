@@ -104,7 +104,7 @@ public class AttendanceActivity extends AppCompatActivity {
 
                     int ID = (int) id;
                     subName = subjectList.get(ID);
-                    Intent intent = new Intent(getApplicationContext(),AttendanceActivity2.class);
+                    Intent intent = new Intent(getApplicationContext(), Attendance2Activity.class);
                     intent.putExtra("subjectName", subName);
                     intent.putExtra("position", POSITION);
                     startActivity(intent);

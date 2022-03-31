@@ -33,6 +33,7 @@ public class TextToSpeechActivity extends AppCompatActivity {
         saveButton = (Button)findViewById(R.id.saveButtonId);
         saveButton.setEnabled(false);
         EditText editText = (EditText)findViewById(R.id.editText1Id);
+
         DbHandler db = new DbHandler(TextToSpeechActivity.this);
         String title = "Saved Note from TextToSpeech";
         String body = editText.getText().toString();

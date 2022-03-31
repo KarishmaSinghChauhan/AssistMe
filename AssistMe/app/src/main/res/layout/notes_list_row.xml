@@ -16,6 +16,7 @@
         android:layout_marginEnd="0dp"
         android:ellipsize="end"
         android:hint="Tap to add title here. . ."
+        android:textColor="#023e8a"
         android:maxLines="1"
         android:textSize="16sp"
         android:textStyle="bold" />

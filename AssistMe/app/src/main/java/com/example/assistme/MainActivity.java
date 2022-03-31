@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                         intent = new Intent(getApplicationContext(), TextToSpeechActivity.class );
                         break;
                     case 3:
-                        intent = new Intent(getApplicationContext(), DatesGoalsNotesActivity.class );
+                        intent = new Intent(getApplicationContext(), NotesActivity.class );
                         break;
                     case 4:
                         intent = new Intent(getApplicationContext(), QuoteActivity.class);

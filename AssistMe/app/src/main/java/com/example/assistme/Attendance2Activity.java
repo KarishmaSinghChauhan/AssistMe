@@ -18,7 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import static com.example.assistme.AttendanceActivity.sharedPreferences;
 import static com.example.assistme.AttendanceActivity.subjectList;
 
-public class AttendanceActivity2 extends AppCompatActivity {
+public class Attendance2Activity extends AppCompatActivity {
 
     Intent intent;
     EditText subject;

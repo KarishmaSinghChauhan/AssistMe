@@ -15,12 +15,12 @@
         android:theme="@style/AppTheme">
         <activity android:name=".DiscoLightsActivity"></activity>
         <activity android:name=".BrainTrainerActivity" />
-        <activity android:name=".DatesGoalsNotesActivity" />
-        <activity android:name=".DatesGoalsNotes2Activity" />
+        <activity android:name=".NotesActivity" />
+        <activity android:name=".Notes2Activity" />
         <activity android:name=".SpeechToTextActivity" />
         <activity android:name=".TextToSpeechActivity" />
         <activity android:name=".QuoteActivity" />
-        <activity android:name=".AttendanceActivity2" />
+        <activity android:name=".Attendance2Activity" />
         <activity android:name=".AttendanceActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

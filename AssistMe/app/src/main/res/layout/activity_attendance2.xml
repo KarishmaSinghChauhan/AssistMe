@@ -8,7 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context="com.example.assistme.AttendanceActivity2">
+    tools:context="com.example.assistme.Attendance2Activity">
 
     <EditText
         android:layout_width="match_parent"

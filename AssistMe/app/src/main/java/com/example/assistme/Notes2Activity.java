@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
-public class DatesGoalsNotes2Activity extends AppCompatActivity {
+public class Notes2Activity extends AppCompatActivity {
 
     EditText notesTitle;
     EditText notesBody;
@@ -61,7 +61,7 @@ public class DatesGoalsNotes2Activity extends AppCompatActivity {
         intent.putExtra("title", title);
         intent.putExtra("description", body);
         startActivity(intent);
-//        Toast.makeText(DatesGoalsNotes2Activity.this,"Reminder set!", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(Notes2Activity.this,"Reminder set!", Toast.LENGTH_SHORT).show();
     }
 
     protected void updateNote(int pos) {
@@ -73,18 +73,18 @@ public class DatesGoalsNotes2Activity extends AppCompatActivity {
         db.updateNoteDetails(title, body, noteid);
 
         notesList = db.getNotes();
-        DatesGoalsNotesActivity.arrayAdapter = new SimpleAdapter(DatesGoalsNotes2Activity.this, notesList, R.layout.notes_list_row, from, to);
-        DatesGoalsNotesActivity.notesListView.setAdapter(DatesGoalsNotesActivity.arrayAdapter);
+        NotesActivity.arrayAdapter = new SimpleAdapter(Notes2Activity.this, notesList, R.layout.notes_list_row, from, to);
+        NotesActivity.notesListView.setAdapter(NotesActivity.arrayAdapter);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dates_goals_notes2);
+        setContentView(R.layout.activity_notes2);
 
         notesTitle = (EditText)findViewById(R.id.EditTextTitleId);
         notesBody = (EditText)findViewById(R.id.EditTextBodyId);
-        db = new DbHandler(DatesGoalsNotes2Activity.this);
+        db = new DbHandler(Notes2Activity.this);
         notesList = db.getNotes();
         from = new String[]{"title", "body"};
         to = new int[]{R.id.noteTitle, R.id.noteBody};
@@ -100,8 +100,8 @@ public class DatesGoalsNotes2Activity extends AppCompatActivity {
             String body = "Empty body";
             db.insertNoteDetails(title,body);
             notesList = db.getNotes();
-            DatesGoalsNotesActivity.arrayAdapter = new SimpleAdapter(DatesGoalsNotes2Activity.this, notesList, R.layout.notes_list_row, from, to);
-            DatesGoalsNotesActivity.notesListView.setAdapter(DatesGoalsNotesActivity.arrayAdapter);
+            NotesActivity.arrayAdapter = new SimpleAdapter(Notes2Activity.this, notesList, R.layout.notes_list_row, from, to);
+            NotesActivity.notesListView.setAdapter(NotesActivity.arrayAdapter);
             pos = notesList.size()-1;
         }
 

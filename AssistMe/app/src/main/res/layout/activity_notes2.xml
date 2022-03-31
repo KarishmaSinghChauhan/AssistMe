@@ -11,7 +11,7 @@
     android:paddingTop="2dp"
     android:paddingRight="4dp"
     android:paddingBottom="2dp"
-    tools:context="com.example.assistme.DatesGoalsNotes2Activity">
+    tools:context="com.example.assistme.Notes2Activity">
 
     <Button
         android:id="@+id/shareBtnId"
