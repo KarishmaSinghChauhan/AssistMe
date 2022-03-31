@@ -28,7 +28,7 @@ Here are a few screenshots of the working application:-
     <img src="AssistMe/Screenshots/Attendance2.jpg" height = "400" width="200">
   </p>
   
-  * Users can input the number of days for which they were present and absent in each subject and the minimum attendance required in order to manage and monitor the       attendance of any subject. They can also edit any of this data at any time and save them permanently. 
+  * Users can input the number of days for which they were present and absent in each subject and the minimum attendance required in order to manage and monitor the       attendance of any subject. They can also edit any of this data and even the subject name at any time and save them permanently. 
   <p align="center"> 
     <img src="AssistMe/Screenshots/Attendance3.jpg" height = "400" width="200">
     <img src="AssistMe/Screenshots/Attendance4.jpg" height = "400" width="200">
@@ -46,13 +46,13 @@ Here are a few screenshots of the working application:-
     <img src="AssistMe/Screenshots/TextToSpeech2.jpg" height = "400" width="200">
 </p>
 
-* The **Notes** option helps in managing and sharing notes with a title and description.
+* The **Notes** option helps in managing and sharing notes with a title and a description.
 
   * Users can display all notes, add a new note and delete one or all of them from the memory.
   <p align="center"> 
     <img src="AssistMe/Screenshots/Notes1.jpg" height = "400" width="200">
     <img src="AssistMe/Screenshots/Notes2.jpg" height = "400" width="200">
- </p>
+  </p>
  
   * Users can edit each note, set calendar reminders and share the note as text via different apps on the device.
   <p align="center"> 
@@ -67,7 +67,8 @@ Here are a few screenshots of the working application:-
   
 * The **Brain Trainer** is a time-bound trivia game to train and test the Mathematical skills with questions based on +, -, *, / and % operators.
 <p align="center"> 
-  <img src="AssistMe/Screenshots/BrainTrainer.jpg" height = "400" width="200">
+  <img src="AssistMe/Screenshots/BrainTrainer1.jpg" height = "400" width="200">
+  <img src="AssistMe/Screenshots/BrainTrainer2.jpg" height = "400" width="200">
 </p>
 
 * The **Disco Lights** option fills the screen with different colors which keep changing randomly.
